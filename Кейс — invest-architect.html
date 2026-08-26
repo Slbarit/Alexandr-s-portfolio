@@ -1,0 +1,507 @@
+<title>Сто требований</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --bg:#f3f3ef; --surface:#fbfbf8; --surface-2:#eeeee8;
+  --ink:#141d1b; --ink-2:#3d4a47; --muted:#6d7a76;
+  --rule:#dcdcd3; --rule-2:#c9c9be;
+  --c1:#008573; --c2:#cf6a12; --c3:#7052d6;
+  --seq1:#cfe4de; --seq2:#95c4b9; --seq3:#4a9f8e; --seq4:#00655a;
+  --warn:#a8511a;
+  --shadow:0 1px 2px rgba(20,29,27,.05), 0 8px 24px -16px rgba(20,29,27,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101413; --surface:#181d1b; --surface-2:#212724;
+    --ink:#e9ede9; --ink-2:#c2ccc7; --muted:#8e9c97;
+    --rule:#2a322f; --rule-2:#3a433f;
+    --c1:#1b9382; --c2:#c87c2c; --c3:#8778d8;
+    --seq1:#25332f; --seq2:#2f6357; --seq3:#3d8d7c; --seq4:#57b5a1;
+    --warn:#d08a4a;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101413; --surface:#181d1b; --surface-2:#212724;
+  --ink:#e9ede9; --ink-2:#c2ccc7; --muted:#8e9c97;
+  --rule:#2a322f; --rule-2:#3a433f;
+  --c1:#1b9382; --c2:#c87c2c; --c3:#8778d8;
+  --seq1:#25332f; --seq2:#2f6357; --seq3:#3d8d7c; --seq4:#57b5a1;
+  --warn:#d08a4a;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+.col{max-width:66ch}
+
+/* ---- header ---- */
+header{padding:72px 0 40px;border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--c1); margin:0 0 20px;
+}
+h1{
+  font-family:Spectral,Georgia,serif; font-weight:600; font-size:clamp(44px,7vw,76px);
+  line-height:1.02; letter-spacing:-.02em; margin:0 0 18px; text-wrap:balance;
+}
+.dek{font-size:20px;line-height:1.5;color:var(--ink-2);margin:0 0 28px;max-width:60ch}
+.byline{
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px 20px;
+}
+
+/* ---- kpi ---- */
+.kpis{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  margin:40px 0 8px;border-radius:3px;overflow:hidden;
+}
+.kpi{background:var(--surface);padding:20px 18px}
+.kpi .v{
+  font-family:Spectral,Georgia,serif;font-weight:600;font-size:30px;line-height:1.1;
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums;
+}
+.kpi .l{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.35}
+.kpi.hl .v{color:var(--c1)}
+
+h2{
+  font-family:Spectral,Georgia,serif;font-weight:600;font-size:30px;line-height:1.2;
+  letter-spacing:-.015em;margin:64px 0 14px;text-wrap:balance;
+}
+h3{font-family:Spectral,Georgia,serif;font-weight:600;font-size:20px;margin:36px 0 10px}
+p{margin:0 0 16px}
+a{color:var(--c1)}
+strong{font-weight:600}
+.lead{font-size:18px;color:var(--ink-2)}
+
+/* ---- findings ---- */
+.finding{
+  margin:56px 0;padding-top:28px;border-top:1px solid var(--rule);
+}
+.fnum{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.12em;
+  color:var(--c2);margin-bottom:10px;
+}
+.finding h2{margin-top:0;font-size:27px}
+.claim{
+  font-size:18.5px;line-height:1.5;color:var(--ink-2);
+  border-left:2px solid var(--c1);padding-left:18px;margin:0 0 26px;max-width:62ch;
+}
+
+/* ---- figure ---- */
+figure{
+  margin:28px 0;background:var(--surface);border:1px solid var(--rule);
+  border-radius:4px;padding:22px 20px 16px;box-shadow:var(--shadow);
+}
+figcaption{
+  font-size:13px;color:var(--muted);margin-top:14px;padding-top:12px;
+  border-top:1px solid var(--rule);line-height:1.5;
+}
+.figtitle{
+  font-size:14px;font-weight:600;letter-spacing:.01em;margin:0 0 2px;
+}
+.figsub{font-size:12.5px;color:var(--muted);margin:0 0 16px}
+.chartbox{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0 0;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:7px}
+.swatch{width:11px;height:11px;border-radius:2px;flex:none}
+
+/* ---- tooltip ---- */
+#tip{
+  position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;
+  padding:8px 11px;font-size:12.5px;line-height:1.45;box-shadow:var(--shadow);
+  z-index:50;font-variant-numeric:tabular-nums;max-width:230px;
+}
+#tip b{font-weight:600;display:block;margin-bottom:2px}
+
+.parthead{margin:96px 0 8px;padding-top:34px;border-top:2px solid var(--ink)}
+.parthead h2{margin:6px 0 14px}
+/* ---- misc ---- */
+ul{padding-left:20px;margin:0 0 18px}
+li{margin-bottom:9px}
+.note{
+  background:var(--surface-2);border-radius:4px;padding:18px 20px;
+  font-size:14.5px;color:var(--ink-2);margin:24px 0;line-height:1.6;
+}
+.tools{
+  display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;
+}
+.tool{
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+  border:1px solid var(--rule-2);border-radius:999px;padding:5px 13px;color:var(--ink-2);
+}
+footer{
+  margin-top:80px;padding-top:26px;border-top:1px solid var(--rule);
+  font-size:13px;color:var(--muted);
+}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:18px 0}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--c1);outline-offset:2px}
+
+/* ---- heatmap ---- */
+:root{
+  --hm1:#e8f2ef; --hm2:#bfdfd6; --hm3:#8ac5b6; --hm4:#4ea191; --hm5:#12786a;
+  --hmt1:#141d1b; --hmt2:#141d1b; --hmt3:#0d1412; --hmt4:#f7fbfa; --hmt5:#f7fbfa;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --hm1:#1c2624; --hm2:#234a43; --hm3:#2f6c60; --hm4:#3f9184; --hm5:#56b5a4;
+    --hmt1:#e9ede9; --hmt2:#e9ede9; --hmt3:#0d1412; --hmt4:#0d1412; --hmt5:#0d1412;
+  }
+}
+:root[data-theme="dark"]{
+  --hm1:#1c2624; --hm2:#234a43; --hm3:#2f6c60; --hm4:#3f9184; --hm5:#56b5a4;
+  --hmt1:#e9ede9; --hmt2:#e9ede9; --hmt3:#0d1412; --hmt4:#0d1412; --hmt5:#0d1412;
+}
+.qcompare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin:24px 0}
+.qcompare>div{background:var(--surface);padding:18px 20px}
+.qcompare h4{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;
+  font-weight:500;font-family:"IBM Plex Mono",monospace}
+.qcompare .before h4{color:var(--muted)}
+.qcompare .after h4{color:var(--c1)}
+.qcompare p{font-size:14.5px;line-height:1.55;margin:0 0 12px}
+.qcompare p:last-child{margin-bottom:0}
+@media (max-width:720px){.qcompare{grid-template-columns:1fr}}
+.quote{font-family:Spectral,Georgia,serif;font-size:19px;line-height:1.5;font-style:italic;
+  color:var(--ink);border-left:2px solid var(--c2);padding-left:20px;margin:22px 0}
+.quote cite{display:block;font-style:normal;font-size:13px;font-family:"IBM Plex Sans",sans-serif;
+  color:var(--muted);margin-top:10px}
+</style>
+
+<style>
+.kpi.warn .v{color:var(--warn)}
+.note{max-width:78ch}
+
+/* карточки разделов документа вопросов */
+.qgrid{display:grid;grid-template-columns:repeat(5,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.qcard{background:var(--surface);padding:14px 15px 15px;display:flex;flex-direction:column;gap:2px}
+.qcard .let{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--c2)}
+.qcard .nm{font-size:13.5px;font-weight:600;line-height:1.3;color:var(--ink);min-height:2.6em}
+.qcard .n{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:500;
+  color:var(--c1);margin-top:6px;line-height:1;font-variant-numeric:tabular-nums}
+.qcard .n em{font-style:normal;font-size:12px;color:var(--warn);margin-left:5px}
+.qcard .n s{text-decoration:none;font-size:12px;color:var(--muted);margin-left:4px}
+
+/* таблица дефектов */
+.deftab{font-size:14px}
+.deftab th.l,.deftab td.l{text-align:left;vertical-align:top;line-height:1.5}
+.deftab td{padding:12px 14px 12px 0}
+.deftab th{padding-bottom:8px}
+.deftab tr td:first-child{width:20%;padding-right:18px}
+.deftab tr td:nth-child(2){width:44%;padding-right:18px}
+.deftab code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+  background:var(--surface-2);padding:1px 4px;border-radius:3px;white-space:nowrap}
+.deftab tr:last-child td{border-bottom:none}
+
+/* четыре контура */
+.contours{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.cont{border:1px solid var(--rule);border-radius:4px;padding:16px 16px 14px;background:var(--surface);display:flex;flex-direction:column}
+.cont.on{border-top:3px solid var(--c1)}
+.cont.off{border-top:3px dashed var(--rule-2);background:transparent}
+.cont .h{font-family:Spectral,Georgia,serif;font-size:19px;font-weight:600;margin:0 0 4px}
+.cont.off .h{color:var(--muted)}
+.cont .d{font-size:13px;color:var(--ink-2);line-height:1.45;margin:0 0 12px}
+.cont.off .d{color:var(--muted)}
+.cont .rows{border-top:1px solid var(--rule);padding-top:9px;margin-top:auto;display:flex;flex-direction:column;gap:5px}
+.cont .r{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.cont .r span:first-child{color:var(--muted);font-family:"IBM Plex Sans",sans-serif}
+.cont.on .r span:last-child{color:var(--c1);font-weight:500}
+.cont.off .r span:last-child{color:var(--warn);font-weight:500}
+.cont .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;margin-top:11px;display:block}
+.cont.on .tag{color:var(--c1)}
+.cont.off .tag{color:var(--warn)}
+
+code{font-family:"IBM Plex Mono",monospace;font-size:13px;
+  background:var(--surface-2);padding:1px 5px;border-radius:3px}
+@media (max-width:820px){.qgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .deftab tr td:first-child,.deftab tr td:nth-child(2){width:auto}
+  .deftab{font-size:13px}
+}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Кейс 04 · личный проект · июль–август 2026</p>
+  <h1>Сто требований</h1>
+  <p class="dek">Персональная система поддержки инвестиционных решений. Требования, правила работы и приёмку вёл я. Код по ним писал ИИ‑агент. Кейс о том, что из этого вышло — и что не вышло.</p>
+  <div class="byline">
+    <span>Александр Брей</span>
+    <span>invest‑architect · Python · SQLite · FastAPI</span>
+    <span>107 коммитов за 11 дней</span>
+  </div>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><div class="v">100</div><div class="l">функциональных требований в спецификации</div></div>
+  <div class="kpi"><div class="v">82</div><div class="l">вопроса, на которые я ответил до первой строки кода</div></div>
+  <div class="kpi"><div class="v">991</div><div class="l">автотест, зелёные до каждого коммита</div></div>
+  <div class="kpi hl"><div class="v">5</div><div class="l">дефектов «тихо неверного числа», пойманных правилами</div></div>
+  <div class="kpi warn"><div class="v">0</div><div class="l">решений в журнале: главный контур так и не запущен</div></div>
+</div>
+
+<div class="col">
+
+<div class="finding">
+  <p class="fnum">Задача</p>
+  <p class="claim">Я вкладываю в долларовые акции с казахстанского счёта. Данные для одного решения лежат в пяти местах: котировки у брокера, отчётность на сайте комиссии по ценным бумагам, новости, макростатистика, мои собственные заметки в Excel. Я хотел свести их в одну программу, чтобы не собирать картину заново каждый раз.</p>
+  <p>Формулировка «свести данные в одно место» продержалась ровно до момента, когда её пришлось записать как требования. Тогда выяснилось, что отчёт — не самая ценная часть.</p>
+  <p>Отчёт отвечает на вопрос «что сейчас». Он не отвечает на вопрос «прав ли я был в прошлый раз». А без второго ответа непонятно, стоит ли вообще доверять первому: любая система, которая только показывает числа, выглядит одинаково убедительно и когда работает, и когда не работает.</p>
+  <p>Поэтому в спецификацию попал четвёртый блок, которого не было в исходной идее — журнал решений. При каждой покупке, продаже и <em>сознательном отказе</em> фиксируется тезис, ожидаемый срок, заявленная вероятность и условия, при которых тезис считается опровергнутым. Через год это даёт число: насколько мои «уверен на 70%» совпадают с реальностью.</p>
+  <p>Отказы записываются обязательно. Иначе в памяти остаются только купленные бумаги, и оценка себя выходит завышенной по построению.</p>
+</div>
+
+<div class="note">
+  <b>Побочная находка, которая изменила расчёт.</b> Первоначальный тезис звучал так: тенге девальвируется, значит долларовый актив защищает капитал, а отбор недооценённых компаний добавляет доходность сверху. Записав это как требование, я увидел, что здесь <b>две разные ставки, и считать их надо раздельно</b>. Защиту от девальвации даёт любой долларовый актив, включая казначейские векселя; отбор компаний оправдан, только если бьёт долларовый бенчмарк. Иначе возникает ловушка: тенге упал на 15%, портфель в долларах просел на 5%, отчёт показывает «+9% в тенге» — и неверная стратегия выглядит успешной. Отсюда требование: любой отчёт о доходности показывает три числа — результат в долларах, результат в тенге и результат эталонного индекса за тот же период.
+</div>
+
+</div>
+
+<h2 class="parthead">Как была устроена работа</h2>
+
+<div class="col">
+  <p class="lead">Я не писал код. Я писал то, по чему код можно проверить.</p>
+  <p>Разделение было жёстким и не менялось: я ставлю задачу, отвечаю на вопросы, принимаю или отклоняю решения; агент пишет код, гоняет проверки и коммитит. Такой режим работает только при двух условиях — вопросы заданы заранее, и есть правила, которые нельзя обойти молча.</p>
+</div>
+
+<figure>
+  <p class="figtitle">Документ открытых вопросов: 82 вопроса в десяти разделах</p>
+  <p class="figsub">Каждый устроен одинаково: вопрос простыми словами → зачем он нужен → варианты → рекомендация. Отвечать можно списком.</p>
+  <div class="qgrid" id="qgrid"></div>
+  <figcaption>Разделы: стратегия отбора, источники идей, данные, деньги и налоги, состав расчётов, работа с моделью, журнал решений, отчёты и уведомления, техническая часть, продуктовые страховки на будущее. Восемь вопросов я закрыл сразу и датировал ответы; из этих ответов родились пять новых вопросов — например, что комиссия за внебиржевые сделки может сделать микрокапы экономически недоступными.</figcaption>
+</figure>
+
+<div class="col">
+  <p>Вопросы вроде «сколько бумаг держим одновременно» и «когда продаём» выглядят необязательными, пока не попробуешь без них написать отбор. «Отсекать убыточные компании» убивает все спецситуации; «требовать событие с датой» убивает все хорошие бизнесы. Одним набором правил их не отобрать — значит, наборов должно быть два, и это решение, а не деталь реализации.</p>
+  <p>Правила работы я задал такие:</p>
+  <ul>
+    <li><b>Красный прогон проверок — это не коммит.</b> Ни обхода хуков, ни «поправлю следующим коммитом».</li>
+    <li><b>Строки в базе добавляются, но не изменяются и не удаляются.</b> Оценка тезиса — новая строка, а не правка старой. Иначе история незаметно станет несопоставимой.</li>
+    <li><b><code>None</code> — «нет данных», <code>0</code> — «ноль».</b> Подменять одно другим запрещено. Проверка вида <code>if metrics.get(x)</code> теряет нули.</li>
+    <li><b>Сбои видимы.</b> Пустой результат и упавший источник — разные события, и отчёт обязан их различать.</li>
+    <li><b>Не подгонять.</b> Расхождение расчёта с настоящими данными — находка, а не помеха. Правится причина, а не число.</li>
+    <li><b>Ключи брокера не читать.</b> Отдельный список запретов, а не подтверждение каждой команды вручную.</li>
+    <li><b>В конце каждой сессии — отчёт:</b> что сделано, какие решения приняты без спроса и почему, что осталось спорным.</li>
+  </ul>
+  <p>Последнее правило оказалось самым полезным. Оно и есть предмет приёмки: я читаю не терминал, а четыре документа, где агент сам перечисляет, где он решил за меня. С этим можно не согласиться задним числом.</p>
+</div>
+
+<figure>
+  <p class="figtitle">107 коммитов за одиннадцать дней</p>
+  <p class="figsub">Всплеск 4–5 августа — сессии, где я разрешил работать без подтверждений с одной явной границей: не в разрез с архитектурой.</p>
+  <div id="c-commits"></div>
+  <figcaption>Первые четыре коммита 26 июля — выделение проекта из моего же монолитного скрипта анализа портфеля (второй git‑аккаунт). Дальше — реализация по спецификации: 193 задачи, десять фаз.</figcaption>
+</figure>
+
+<h2 class="parthead">Что поймали правила</h2>
+
+<div class="col">
+  <p class="lead">В финансовом коде поломка выглядит не как падение программы, а как тихо неверное число, которое замечаешь через полгода.</p>
+  <p>Это единственная причина, по которой стоило писать правила, а не просто смотреть на результат. Пять дефектов ниже прошли бы через любую приёмку «на глаз»: программа не падала, отчёт формировался, числа выглядели правдоподобно.</p>
+</div>
+
+<figure>
+  <p class="figtitle">Пять дефектов, каждый из которых давал правдоподобно неверный ответ</p>
+  <table class="deftab">
+    <thead><tr><th class="l">Где</th><th class="l">Что происходило</th><th class="l">Почему не видно</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="l"><b>Журнал решений</b></td>
+        <td class="l">Заявленная вероятность принималась, проверялась на диапазон — и не сохранялась: у таблицы не было для неё колонки, а вставка её не включала.</td>
+        <td class="l">Форма отрабатывала без ошибки. Число исчезало молча при каждой записи.</td>
+      </tr>
+      <tr>
+        <td class="l"><b>Расчёт калибровки</b></td>
+        <td class="l">Вероятность хранится долей единицы, а еженедельный отчёт делил её на 100 ещё раз. Тот же баг с другого конца — при отрисовке.</td>
+        <td class="l">Раздел «счёт прошлых решений» показывал число. Просто не то. Ни разу не покрыт тестом с ненулевой вероятностью.</td>
+      </tr>
+      <tr>
+        <td class="l"><b>Сравнение прогонов</b></td>
+        <td class="l">Дата без времени суток сравнивалась с полной меткой времени как строки. <code>"2026-08-01" ≥ "2026-08-01T12:00:00"</code> ложно всегда.</td>
+        <td class="l">Срабатывания правил в день завершения прошлого прогона молча выпадали из отчёта об изменениях.</td>
+      </tr>
+      <tr>
+        <td class="l"><b>Еженедельный дифф</b></td>
+        <td class="l">Отчёт сравнивал прогон сам с собой: поиск «последнего завершённого» после завершения текущего находил его же.</td>
+        <td class="l">Раздел «что изменилось» был бы вечно пустым — и это выглядело бы как «изменений нет».</td>
+      </tr>
+      <tr>
+        <td class="l"><b>Резервные копии</b></td>
+        <td class="l">Копия создавалась и проверялась, но результат не попадал в таблицу, которую читает отчёт о состоянии.</td>
+        <td class="l">Отчёт вечно показывал бы «резервных копий ещё не было» — после успешных копий.</td>
+      </tr>
+    </tbody>
+  </table>
+  <figcaption>Первые два найдены при ручной проверке на настоящих данных, третий и четвёртый — собственными тестами агента до коммита, пятый — интеграционным тестом, написанным последним. Каждый исправлен по причине, а не по симптому: пропавшая колонка — новым файлом миграции, с явной пометкой, что записанные до неё решения вероятность не сохранили и восстановить её неоткуда.</figcaption>
+</figure>
+
+<div class="note warnnote">
+  <b>Один инцидент, который стоит рассказывать вслух.</b> Проверяя команду, агент обратился к настоящему счёту у брокера — ключи лежали в окружении, и вызов ушёл по‑настоящему. Прав на отправку поручений у ключа нет, так что ничего не произошло. Но правило «ключи брокера не читать» касается не только чтения файла, а любого действия, которое трогает настоящий счёт без явного намерения. После этого проверки командной строки запускались с принудительно отключённым файлом секретов. Ошибка попала в отчёт сессии, а не осталась в терминале — ровно для этого отчёты и заведены.
+</div>
+
+<h2 class="parthead">Что работает и что не запущено</h2>
+
+<div class="col">
+  <p>Спецификация делит систему на четыре контура. Честный ответ на вопрос «работает ли программа» разный для каждого.</p>
+</div>
+
+<figure>
+  <p class="figtitle">Четыре контура системы на 5 августа 2026</p>
+  <div class="contours" id="contours"></div>
+  <figcaption>Первые два контура наполнены настоящими данными: 17 прогонов на моём портфеле из 14 бумаг, отчётность с 2000 года. Третий и четвёртый написаны, покрыты тестами и ни разу не использованы. Ради четвёртого всё и затевалось.</figcaption>
+</figure>
+
+<div class="col">
+  <p>Девять прогонов из семнадцати завершились со статусом «частично». Это не сбой, а работающее требование: по одной бумаге источник отчётности не отвечал девять раз подряд, и система записала это как «источник не ответил», а не как «данных нет». Разница между этими двумя случаями — единственное, что отличает пустую ячейку от ошибки.</p>
+  <h3>Незакрытый долг: журнал решений пуст</h3>
+  <p>Контур написан целиком — таблицы, команды, форма в вебе, расчёт калибровки. Но ни одного своего решения я в него не завёл. Значит, главный вопрос проекта — «работает ли мой процесс отбора» — по‑прежнему без ответа, и вся часть с проверкой себя остаётся заявкой, а не результатом.</p>
+  <p>Причина простая и неприятная: заполнение журнала — единственная часть системы, которую нельзя автоматизировать. Тезис, который я не могу пересказать своими словами, не удержит меня в позиции при просадке, поэтому его должен писать я. Это ручная работа раз в неделю, и она проиграла всему остальному.</p>
+</div>
+
+<h2 class="parthead">Об авторстве</h2>
+
+<div class="col">
+  <div class="note">
+    <p><b>Моё:</b> замысел, постановка задачи, ответы на 82 вопроса и на уточнения к спецификации, инвестиционные решения, зашитые в требования (лимиты концентрации, правила продажи, порядок учёта валюты), правила работы и запретов, приёмка каждой сессии, решение удалить два источника данных, разрешение и последующее ограничение на использование настоящего счёта.</p>
+    <p><b>Не моё:</b> весь код — 16 797 строк исходников и 14 225 строк тестов. Его писал ИИ‑агент. Тексты спецификации, ADR и отчётов сессий тоже писал он: решения в них мои, формулировки — нет.</p>
+    <p><b>Проверяется:</b> историей коммитов, четырьмя отчётами сессий в <code>docs/review/</code> и датированной таблицей ответов в <code>docs/open-questions.md</code>. Я готов показать репозиторий и разобрать любое решение из него.</p>
+    <p><b>Чего я не умею:</b> написать этот код с нуля руками. Читать его, спорить с ним и ловить в нём тихо неверные числа — умею, и в кейсе выше видно, как.</p>
+  </div>
+</div>
+
+<h2 class="parthead">Что переносится в работу</h2>
+
+<div class="col">
+  <p>Это не кейс про программирование. Это кейс про то, что делает аналитик, когда исполнитель быстрый и не задаёт вопросов сам.</p>
+  <ul>
+    <li><b>Требование ценнее реализации.</b> Сто требований и восемьдесят два вопроса — это несколько дней работы, которые определили всё остальное. Код по ним написался за одиннадцать дней; без них он писался бы бесконечно и не туда.</li>
+    <li><b>Двусмысленность снимается до старта, а не в приёмке.</b> Двадцать один уточняющий вопрос к спецификации зафиксирован с ответами прямо в ней. Каждый из них — час обсуждения сейчас против переделки потом.</li>
+    <li><b>Правило проверяемо или его нет.</b> «Считать аккуратно» ничего не значит. «<code>None</code> — нет данных, <code>0</code> — ноль, подмена запрещена» ловит дефект.</li>
+    <li><b>Различать «нет данных» и «источник не ответил».</b> В любом отчёте, не только в этом. Пустая ячейка, за которой стоит сбой, — самая дорогая ошибка в аналитике.</li>
+    <li><b>Записывать отказы, а не только действия.</b> Иначе оценка собственных решений завышена по построению.</li>
+    <li><b>Приёмка — это чтение решений, а не результата.</b> Отчёт «что я решил за вас и почему» полезнее, чем зелёная сборка.</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Александр Брей · Алматы · <a href="mailto:alexandrbrey.6@gmail.com">alexandrbrey.6@gmail.com</a> · <a href="https://slbarit.github.io/Alexandr-s-portfolio/">портфолио</a></p>
+  <p>Числа в кейсе получены из репозитория и базы данных проекта на 5 августа 2026. Данные портфеля и ключи брокера не публикуются.</p>
+</footer>
+
+</div>
+<div id="tip" class="tip" role="status" aria-live="polite"></div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const el=(n,a={})=>{const x=document.createElementNS(NS,n);for(const k in a)x.setAttribute(k,a[k]);return x;};
+const tip=document.getElementById('tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.opacity=1;
+  const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY-r.height-12;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;if(y<8)y=e.clientY+18;
+  tip.style.left=x+'px';tip.style.top=y+'px';}
+function hideTip(){tip.style.opacity=0;}
+function txt(s,x,y,t,o={}){const n=el('text',{x,y,'font-size':o.size||11,
+  fill:o.fill||'var(--muted)','text-anchor':o.anchor||'middle'});
+  if(o.weight)n.setAttribute('font-weight',o.weight);n.textContent=t;s.appendChild(n);return n;}
+function svgRoot(host,w,h){const s=el('svg',{viewBox:`0 0 ${w} ${h}`,width:w,height:h,role:'img'});
+  host.appendChild(s);return s;}
+
+/* ---- разделы документа вопросов ---- */
+(function(){
+  const Q=[['A','Стратегия отбора',12,0],['B','Источники идей',6,0],['C','Данные',11,1],
+    ['D','Деньги и налоги',7,3],['E','Состав расчётов',7,0],['F','Работа с моделью',8,1],
+    ['G','Журнал решений',5,0],['H','Отчёты и уведомления',8,0],['I','Техническая часть',10,0],
+    ['J','Страховки на будущее',3,0]];
+  const host=document.getElementById('qgrid');
+  Q.forEach(([l,nm,n,add])=>{
+    const d=document.createElement('div');d.className='qcard';
+    d.innerHTML=`<span class="let">${l}</span><span class="nm">${nm}</span>`+
+      `<span class="n">${n}${add?`<em>+${add}</em>`:''}</span>`;
+    if(add)d.title=`${add} вопроса появились уже из полученных ответов`;
+    host.appendChild(d);
+  });
+})();
+
+/* ---- коммиты по дням ---- */
+(function(){
+  const D=[['26.07',5],['27.07',3],['28.07',18],['29.07',1],['30.07',0],['31.07',2],
+           ['01.08',0],['02.08',0],['03.08',7],['04.08',37],['05.08',34]];
+  const W=880,H=250,padL=34,padR=14,padT=30,padB=52;
+  const host=document.getElementById('c-commits');
+  const box=document.createElement('div');box.className='chartbox';host.appendChild(box);
+  const s=svgRoot(box,W,H);
+  const max=40,iw=W-padL-padR,ih=H-padT-padB,bw=iw/D.length;
+  [0,10,20,30,40].forEach(v=>{
+    const y=padT+ih-v/max*ih;
+    s.appendChild(el('line',{x1:padL,y1:y,x2:W-padR,y2:y,stroke:'var(--rule)','stroke-width':1}));
+    txt(s,padL-8,y+4,v,{anchor:'end',size:10.5});
+  });
+  D.forEach(([d,v],i)=>{
+    const x=padL+bw*i+bw*0.2,w=bw*0.6,h=v/max*ih,y=padT+ih-h;
+    const night=i>=9;
+    if(v>0){
+      const r=el('rect',{x,y,width:w,height:h,rx:2,
+        fill:night?'var(--c2)':'var(--c1)',opacity:night?1:.85});
+      r.style.cursor='default';
+      r.addEventListener('mousemove',e=>showTip(e,`<b>${d}.2026</b>${v} коммит${v%10===1&&v!==11?'':'а'}${night?'<br>ночная автономная сессия':''}`));
+      r.addEventListener('mouseleave',hideTip);
+      s.appendChild(r);
+      txt(s,x+w/2,y-6,v,{size:11,fill:'var(--ink-2)',weight:500});
+    } else {
+      s.appendChild(el('line',{x1:x,y1:padT+ih,x2:x+w,y2:padT+ih,stroke:'var(--rule-2)','stroke-width':2}));
+    }
+    txt(s,x+w/2,padT+ih+17,d,{size:10.5});
+  });
+  s.appendChild(el('line',{x1:padL,y1:padT+ih,x2:W-padR,y2:padT+ih,stroke:'var(--rule-2)','stroke-width':1.5}));
+  const bx=padL+bw*9+bw*0.2;
+  s.appendChild(el('line',{x1:bx-6,y1:padT-14,x2:W-padR,y2:padT-14,stroke:'var(--c2)','stroke-width':1.5}));
+  txt(s,W-padR,padT-20,'71 коммит за две ночи',{anchor:'end',size:11,fill:'var(--c2)',weight:500});
+  const lg=document.createElement('div');lg.className='legend';
+  lg.innerHTML='<span><i class="swatch" style="background:var(--c1)"></i>сессии с подтверждением</span>'+
+    '<span><i class="swatch" style="background:var(--c2)"></i>автономные сессии</span>'+
+    '<span><i class="swatch" style="background:var(--rule-2)"></i>дней без коммитов</span>';
+  host.appendChild(lg);
+})();
+
+/* ---- четыре контура ---- */
+(function(){
+  const C=[
+    {on:1,h:'Собирает',d:'Портфель у брокера и кандидатов на покупку из внешних источников идей.',
+     rows:[['строк отчётности','215 054'],['бумаг','14'],['прогонов','17']],tag:'работает на реальных данных'},
+    {on:1,h:'Считает',d:'Показатели из первичной отчётности — детерминированно, без участия модели.',
+     rows:[['показателей','344'],['расчётов ожиданий','234'],['тревожных признаков','11']],tag:'работает на реальных данных'},
+    {on:0,h:'Судит',d:'Досье уходит модели, та возвращает структурированный опровержимый вердикт.',
+     rows:[['обращений к модели','0'],['вердиктов','0'],['досье','0']],tag:'написано, не запущено'},
+    {on:0,h:'Помнит',d:'Решение фиксируется со снимком данных, исход потом сверяется с ожиданием.',
+     rows:[['решений','0'],['сделок','0'],['оценок тезисов','0']],tag:'написано, не запущено'},
+  ];
+  const host=document.getElementById('contours');
+  C.forEach(c=>{
+    const d=document.createElement('div');d.className='cont '+(c.on?'on':'off');
+    d.innerHTML=`<p class="h">${c.h}</p><p class="d">${c.d}</p><div class="rows">`+
+      c.rows.map(([a,b])=>`<div class="r"><span>${a}</span><span>${b}</span></div>`).join('')+
+      `</div><span class="tag">${c.tag}</span>`;
+    host.appendChild(d);
+  });
+})();
+</script>
