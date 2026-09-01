@@ -189,11 +189,31 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
   color:var(--ink);border-left:2px solid var(--c2);padding-left:20px;margin:22px 0}
 .quote cite{display:block;font-style:normal;font-size:13px;font-family:"IBM Plex Sans",sans-serif;
   color:var(--muted);margin-top:10px}
+
+/* ---- навигация между разборами ---- */
+.navtop{margin:0;padding:20px 0 0}
+.navtop a{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted);
+  text-decoration:none;letter-spacing:.04em}
+.navtop a:hover{color:var(--c1);text-decoration:underline}
+.navtop + header{padding-top:30px}
+.navother{margin:72px 0 0;padding-top:26px;border-top:1px solid var(--rule)}
+.navother .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--c2);margin:0 0 14px}
+.navother ul{list-style:none;padding:0;margin:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 28px}
+.navother li{margin:0}
+.navother a{font-family:Spectral,Georgia,serif;font-size:19px;font-weight:600;
+  color:var(--ink);text-decoration:none;line-height:1.25}
+.navother a:hover{color:var(--c1)}
+.navother .sub{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:12.5px;
+  font-weight:400;color:var(--muted);margin-top:2px}
 </style>
 
 <div id="tip" role="status" aria-live="polite"></div>
 
 <div class="wrap">
+<p class="navtop"><a href="index.html">&lt;- Все разборы</a></p>
+
 <header>
   <p class="eyebrow">Портфолио-кейс / продуктовое исследование</p>
   <h1>Семь интервью</h1>
@@ -429,6 +449,15 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute
   <span class="tool">кодирование ответов</span><span class="tool">сегментация</span><span class="tool">конкурентный анализ</span>
   <span class="tool">SOSTAC</span><span class="tool">JTBD</span><span class="tool">юнит-экономика</span>
   <span class="tool">Excel</span><span class="tool">Python (с ИИ)</span>
+</div>
+
+<div class="col navother">
+  <p class="lbl">Другие разборы</p>
+  <ul>
+    <li><a href="case-dashboard.html">Четырнадцать колонок<span class="sub">Рабочий экран для отдела продаж</span></a></li>
+    <li><a href="case-novalab.html">Цена одной школы<span class="sub">Юнит-экономика EdTech-стартапа</span></a></li>
+    <li><a href="case-invest.html">Сто требований<span class="sub">Система поддержки решений</span></a></li>
+  </ul>
 </div>
 
 <footer>
